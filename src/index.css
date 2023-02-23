@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Lato:wght@100;400;700;900&family=Roboto:wght@100;300;400;500;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input-main {
+    @apply input input-bordered input-primary w-full max-w-xs;
+  }
+
+  .nav-link {
+    @apply mt-2 btn btn-ghost w-[90%] p-3 rounded-xl font-medium;
+  }
+
+  .nav-link-active {
+    @apply nav-link btn bg-primary text-base-200 text-left;
+  }
+
+  .content-table-div {
+    @apply py-3 my-4 overflow-x-auto;
+  }
+
+  .content-table-div tr .icons {
+    opacity: 0;
+  }
+  .content-table-div tr:hover .icons {
+    opacity: 1;
+    transition: 0.2s all ease-in-out;
+  }
+  .election-card-container {
+    /* @apply grid items-start w-full h-auto gap-y-5 justify-items-center overflow-y-auto overflow-x-hidden my-10;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(200px, 1fr)); */
+    @apply overflow-y-auto flex flex-wrap  gap-x-10  gap-y-10 w-fit mt-6 py-4 h-auto;
+  }
+  .election-card {
+    @apply card w-96 bg-base-100 shadow-lg hover:shadow-primary hover:shadow-sm;
+  }
+
+  .election-card .icons {
+    opacity: 0;
+  }
+  .election-card:hover .icons {
+    opacity: 1;
+    transition: 0.2s all ease-in-out;
+  }
+
+  .locations-list .icons {
+    opacity: 0;
+  }
+
+  .locations-list li:hover .icons {
+    opacity: 1;
+    transition: 0.2s all ease-in-out;
+  }
+
+  .page-header-bar {
+    @apply flex px-4 py-3 items-center rounded-md justify-between shadow-xl border-t-2 border-secondary;
+  }
+}
