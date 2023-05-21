@@ -31,6 +31,25 @@ export const GetAllElections = (callback: any) => async (dispatch: any) => {
   }
 };
 
+export const GetActiveElections = (callback: any) => async (dispatch: any) => {
+  try {
+    const response = await axiosInstance.get(
+      "admin/election/active-elections",
+      {}
+    );
+    const elections = response.data;
+    dispatch(GetAllSuccess({ elections }));
+    callback();
+    return;
+  } catch (error: any) {
+    dispatch(
+      GetAllError({
+        message: error?.response?.data?.message,
+      })
+    );
+  }
+};
+
 export const UpdateElection =
   (details: any, _id: string, callback: any) => async (dispatch: any) => {
     dispatch(loading);

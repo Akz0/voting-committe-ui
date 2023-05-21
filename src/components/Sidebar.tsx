@@ -84,14 +84,14 @@ const Sidebar = () => {
   };
   return (
     <div className="border-r border-r-primary flex flex-col w-[15%] items-center">
-      <NavLink
+      {/* <NavLink
         className={({ isActive }) =>
           isActive ? "nav-link-active" : "nav-link"
         }
         to={"/dashboard"}
       >
         Home
-      </NavLink>
+      </NavLink> */}
       {role === "admin" && renderAdminNav()}
       {role === "moderator" && renderModeratorNav()}
       <div className="w-full flex justify-center items-center">

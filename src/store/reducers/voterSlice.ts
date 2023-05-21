@@ -8,8 +8,11 @@ export interface IVoter {
     name: string;
   };
   elections: {
-    _id: string;
-    name: string;
+    electionId: {
+      _id: string;
+      name: string;
+    };
+    status: "incomplete" | "completed" | "missed";
   }[];
   status: string;
   walletId: string | null;

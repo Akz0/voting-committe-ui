@@ -38,16 +38,20 @@ const Voters = () => {
   const [currentVoter, setCurrentVoter] = useState<IVoter>();
   const [name, setName] = useState<string>("");
   const [loginId, setLoginId] = useState<string>("");
-  const [location, setLocation] = useState<string>(locationList?.[0]._id);
+  const [location, setLocation] = useState<string>(locationList?.[0]?._id);
   const [status, setStatus] = useState<string>("incomplete");
   const [elections, setElections] = useState<
     {
-      _id: string;
-      name: string;
+      electionId: {
+        _id: string;
+        name: string;
+      };
     }[]
   >([]);
   //
-  const [newElection, setNewElection] = useState<string>(electionList?.[0]._id);
+  const [newElection, setNewElection] = useState<string>(
+    electionList?.[0]?._id
+  );
   const [password, setPassword] = useState<string>("");
 
   useEffect(() => {
@@ -60,7 +64,7 @@ const Voters = () => {
     setName("");
     setStatus("incomplete");
     setElections([]);
-    setLocation(locationList?.[0]._id);
+    setLocation(locationList?.[0]?._id);
     setLoginId("");
     setCurrentVoter(undefined);
     setPassword("");
@@ -89,7 +93,9 @@ const Voters = () => {
     }
     const newVoter = {
       name,
-      elections: elections.map((election: any) => election?._id),
+      elections: elections.map((election: any) => {
+        return { electionId: election?.electionId?._id };
+      }),
       locationId: location,
       loginId,
       status,
@@ -112,7 +118,9 @@ const Voters = () => {
 
     const newVoter = {
       name,
-      electionId: elections.map((election: any) => election?._id),
+      elections: elections.map((election: any) => {
+        return { electionId: election?.electionId?._id };
+      }),
       locationId: location,
       loginId,
     };
@@ -137,32 +145,31 @@ const Voters = () => {
 
   const AddNewElectionToVoter = () => {
     const exists = elections?.findIndex(
-      (item: any) => item?._id === newElection
+      (item: any) => item?.electionId?._id === newElection
     );
     if (exists !== -1) {
       return;
     }
     const election = electionList.find((item: any) => {
-      return newElection === item._id;
+      return newElection === item?._id;
     });
 
     const electionId = {
-      name: election?.name,
-      _id: election?._id,
+      electionId: {
+        name: election?.name,
+        _id: election?._id,
+      },
     };
 
     const newElections = [...elections];
     newElections.push(electionId);
-    console.log(newElections);
     setElections(newElections);
-
-    console.log(newElections);
   };
 
   const RemoveElectionFromElections = (id: string) => {
     const newElections = [...elections];
     const index = newElections.findIndex((item: any) => {
-      return item._id === id;
+      return item?.electionId?._id === id;
     });
     if (index !== -1) {
       newElections.splice(index, 1);
@@ -321,14 +328,16 @@ const Voters = () => {
                     elections?.map((election) => {
                       return (
                         <li
-                          key={election?._id}
+                          key={election?.electionId?._id}
                           className="rounded-md border-b flex justify-between items-center p-2"
                         >
-                          <span>{election?.name}</span>
+                          <span>{election?.electionId?.name}</span>
                           <span
                             className="icons btn btn-error btn-sm btn-outline"
                             onClick={() =>
-                              RemoveElectionFromElections(election?._id)
+                              RemoveElectionFromElections(
+                                election?.electionId?._id
+                              )
                             }
                           >
                             <GoX />
@@ -507,14 +516,16 @@ const Voters = () => {
                     elections?.map((election) => {
                       return (
                         <li
-                          key={election?._id}
+                          key={election?.electionId?._id}
                           className="rounded-md border-b flex justify-between items-center p-2"
                         >
-                          <span>{election?.name}</span>
+                          <span>{election?.electionId?.name}</span>
                           <span
                             className="icons btn btn-error btn-sm btn-outline"
                             onClick={() =>
-                              RemoveElectionFromElections(election?._id)
+                              RemoveElectionFromElections(
+                                election?.electionId?._id
+                              )
                             }
                           >
                             <GoX />
@@ -590,6 +601,7 @@ const Voters = () => {
                       setLoginId(voter?.loginId);
                       SetUpdateModal(true);
                       setStatus(voter?.status);
+                      console.log(voter);
                     }}
                   >
                     <GoPencil />

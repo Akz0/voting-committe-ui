@@ -31,8 +31,8 @@ const Candidates = () => {
   const [currentCandidate, SetCurrentCandidate] = useState<ICandidate>();
   const [name, setName] = useState<string>("");
   const [loginId, setLoginId] = useState<string>("");
-  const [election, setElection] = useState<string>(electionList?.[0]._id);
-  const [location, setLocation] = useState<string>(locationList?.[0]._id);
+  const [election, setElection] = useState<string>(electionList?.[0]?._id);
+  const [location, setLocation] = useState<string>(locationList?.[0]?._id);
 
   useEffect(() => {
     Get();

@@ -14,12 +14,12 @@ function Auth() {
   const [password, setPassword] = useState("");
 
   const LoginSuccess = () => {
-    navigate("/dashboard");
+    navigate("/voters");
   };
 
   useEffect(() => {
     if (IsLoggedIn) {
-      navigate("/dashboard");
+      navigate("/voter");
     }
   }, [IsLoggedIn]);
 

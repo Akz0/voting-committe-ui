@@ -27,15 +27,15 @@ const routes = createBrowserRouter([
       </ProtectedRoutes>
     ),
     children: [
-      {
-        path: "dashboard",
-        element: (
-          <ProtectedRoutes>
-            <Dashboard />
-          </ProtectedRoutes>
-        ),
-        errorElement: <Error404 />,
-      },
+      // {
+      //   path: "dashboard",
+      //   element: (
+      //     <ProtectedRoutes>
+      //       <Dashboard />
+      //     </ProtectedRoutes>
+      //   ),
+      //   errorElement: <Error404 />,
+      // },
       {
         path: "voters",
         element: (

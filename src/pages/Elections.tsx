@@ -40,7 +40,7 @@ const Elections = () => {
   const [pollingEnd, setPollingEnd] = useState(moment().format("YYYY-MM-DD"));
   const [resultDate, setResultDate] = useState(moment().format("YYYY-MM-DD"));
 
-  const [newLocation, setNewLocation] = useState<string>(locationList[0]._id);
+  const [newLocation, setNewLocation] = useState<string>(locationList[0]?._id);
   const [currentElection, SetCurrentElection] = useState<IElection>({
     name: "",
     locations: [],
